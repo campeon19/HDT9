@@ -53,7 +53,7 @@ public class Controlador{
                         arbol.put(separar[0], separar[1]);
                     }
 
-                    arbol.put(separar[0], separar[1].replace(",", ""));
+                    
                 }
 				
 			}
