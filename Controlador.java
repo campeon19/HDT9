@@ -29,16 +29,32 @@ public class Controlador{
             BufferedReader breader = new BufferedReader(reader);
             
             String linea = "";
+            String linea2 = "";
 			
 			while((linea = breader.readLine()) != null) {
 
-				String[] separar = linea.split(",");
-                
-                String uno = separar[0];
-                String[] partes = uno.split(" ");
-                String ingles = partes[0].replace(" ", "");
-                String espanol = partes[1].replace(" ", "");
-                arbol.put(ingles, espanol);
+                if(linea.charAt(0) == '#'){
+                    continue;
+                } else{
+
+                    String[] separar = linea.split("\\s+");
+
+                    if(separar.length > 2){
+                        linea2 = separar[1] + " " + separar[2];
+                        separar[1] = linea2;
+                    }else if(separar.length == 2){
+                        linea2 = separar[1];
+                        separar[1] = linea2;
+                    }else if(separar.length < 1){
+                        linea2 = " ";
+                        separar[1] = linea2;
+                    }
+                    if(separar.length > 1){
+                        arbol.put(separar[0], separar[1]);
+                    }
+
+                    arbol.put(separar[0], separar[1].replace(",", ""));
+                }
 				
 			}
 			
@@ -96,7 +112,7 @@ public class Controlador{
             if(arbol.contains(palabra) == true){
                 System.out.print(arbol.get(palabra) + " ");
             } else{
-                System.out.print("*" + palabra + "");
+                System.out.print(" *" + palabra + "* ");
             }
         }
 
