@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import sun.security.util.Length;
+
 public class Controlador{
 
     BSTFactory factory = new BSTFactory();
@@ -37,7 +39,22 @@ public class Controlador{
                     continue;
                 } else{
 
-                    String[] separar = linea.split("\\s+");
+                    final String[] temp = linea.split("\\s+");
+
+                    if(temp.length > 2)
+                    {
+                       linea2 = temp[1] + " " + temp[2];
+                    }else if(temp.length == 2)
+                    {
+                        linea2 = temp[1];
+                    }else if(temp.length < 1)
+                    {
+                        linea2 = " ";
+                        temp[1] = linea2;
+                    }
+
+
+                   /* String[] separar = linea.split("\\s+");
 
                     if(separar.length > 2){
                         linea2 = separar[1] + " " + separar[2];
@@ -49,10 +66,11 @@ public class Controlador{
                         linea2 = " ";
                         separar[1] = linea2;
                     }
-                    if(separar.length > 1){
-                        arbol.put(separar[0], separar[1]);
+                    */
+                    if(temp.length > 1){
+                        arbol.put(temp[0], temp[1]);
                     }
-
+                   
                     
                 }
 				
